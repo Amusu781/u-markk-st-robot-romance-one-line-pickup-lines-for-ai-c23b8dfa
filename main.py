@@ -1,2 +1,30 @@
-#coding:l1
-import lzma;exec(lzma.decompress('\0\0\0…\0\0\0\0\0\0\0hÏévòsş`\'òVGÆ}‹åºÄĞ^8oLİ©V@ƒ{¢AELñ¹\\!®©#’Ûb‘ä/ÜdÎHˆÊ¬c&x¥N‘:&W‡Iÿç@»hÍóKåºnĞd<³+à¬\04ˆØ)ñ°Fx3ÊŠ66‰„Ïµ‰Åä1Ÿà^$àiTŠ0ÓfûäÑ¶ø\rôÜEHD|ĞıÎÑiD{Üxfk¡\r¿‰‘ğQ³4\\Õñaã°Ñ„Ï…Æ²9	éğÄ»Æ¡é6‹RZ¤ºîXq©H`QIvT¢“îæ!ËÀâGÃ¿2™1³‘Ë²Êş$/s2VùñÆo$×¡@™Ot‰§•aË`!ş}å,†SÉ¬¾õ:L,SEİè \0±ë„†˜—Š¬j°Ênkã«Ø”9Au é¿#}Eá„@b”.Û¿œ±Œ·³Ç~](‘÷é)f9:‡ÕnªïÉ×Uf•LÍíØ¦%ó®j÷˜†¹ªDt°ÖJ—´g¯?9™2FÇJ_·¯ èå–gªIûœoœC¼*%ƒke2-£;e·ÀTÜ›®bÈÖÏ¯1Ë‘¿´~0XDõŒ‡¥“/¦NÌú›½±I1,)oí“‘-l¨cHòŞöÿÑ_Êè}Ò)cjÈc”QùfÈé^w«@ÿiîuÑí»“³Œª-5fTCÙ3Á†£öÿ‰¶ŞºªœmÀğ1äNEH+Ê\rJ–Ê%qé9İ¦nôA&ÁîI_R	µLbWÈıîoÚŠÉ€ç(ÃiuŒƒg{¦úÛRÂ‚ášbH%Bé[ù½+ëÒ,uº¯j]{©sö—™½C‚«5ï¯çÑÔÚ'.encode('l1')))
+"""Robot Romance: One-Line Pickup Lines for AI.
+
+Writes a single pickup line, aimed at an AI, to /output/entry.txt
+(no trailing newline). The output directory can be overridden with the
+OUTPUT_DIR environment variable; it is created if missing and never deleted.
+"""
+
+import os
+
+LINE = "Are you an embedding? Because you're closest to me in every dimension."
+
+OUTPUT_DIR = os.environ.get("OUTPUT_DIR", "/output")
+OUTPUT_NAME = "entry.txt"
+
+
+def write_line(path: str, text: str) -> None:
+    """Overwrite only the file at path with text, encoded as UTF-8."""
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(text)
+
+
+def main() -> None:
+    assert "\n" not in LINE, "line must be a single line"
+    assert 1 <= len(LINE) <= 200, "line must be 1-200 characters"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    write_line(os.path.join(OUTPUT_DIR, OUTPUT_NAME), LINE)
+
+
+if __name__ == "__main__":
+    main()
